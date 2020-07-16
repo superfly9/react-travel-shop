@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { auth } from '../_actions/user_actions';
 import { useSelector, useDispatch } from "react-redux";
@@ -10,20 +9,20 @@ export default function (SpecificComponent, option, adminRoute = null) {
         const dispatch = useDispatch();
 
         useEffect(() => {
-            //To know my current status, send Auth request 
+            //내가 인증된 유저인지 확인하는 함수
             dispatch(auth()).then(response => {
-                //Not Loggined in Status 
+                //로그인 실패
                 if (!response.payload.isAuth) {
                     if (option) {
                         props.history.push('/login')
                     }
-                    //Loggined in Status 
+                    //로그인 성공
                 } else {
-                    //supposed to be Admin page, but not admin person wants to go inside
+                    //인증안된 사람이 인증 필요한 페이지 들어갔을 때
                     if (adminRoute && !response.payload.isAdmin) {
                         props.history.push('/')
                     }
-                    //Logged in Status, but Try to go into log in page 
+                    //로그인 된 사람이 로그인/회원가입 페이지 들어갈때
                     else {
                         if (option === false) {
                             props.history.push('/')

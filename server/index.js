@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));
+app.use('/api/product',require('./routes/product'));
 
 app.use('/uploads', express.static('uploads'));
 

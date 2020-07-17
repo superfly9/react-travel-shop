@@ -1,0 +1,23 @@
+.dropzone_container {
+    display: flex;
+    justify-content: space-between;
+}
+.dropzone_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 320px;
+    height: 240px;
+    border: 1px solid black;
+}
+.thumbnail_container {
+    display: flex;
+    width: 350px;
+    height: 240px;
+    overflow-x: auto;
+    overflow-y: hidden;
+   }
+   .thumbnail_container .thumbnail {
+       max-width: 350px;
+       height: 240px;
+   }

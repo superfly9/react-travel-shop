@@ -15,6 +15,7 @@ const ProductUploadPage = (props)=>{
     const [Description,setDescription]=useState('');
     const [Price,setPrice]=useState(0);
     const [Continent,setContinent]=useState(1);
+    const [Images,setImages]=useState([]);
 
     const handleInputChange = (e)=>{
         const target = e.currentTarget;
@@ -38,11 +39,16 @@ const ProductUploadPage = (props)=>{
         setContinent(e.currentTarget.value);
     }
 
+    const setImageFunction = (images)=>{
+        setImages(images);
+        console.log(images,'from Child');
+    }
+
     return (
         <div className='upload_container'>
             <h2>여행 상품 업로드</h2>
             <form onSubmit={handleSubmit}>
-                <FileUpload />
+                <FileUpload setImageFunction={setImageFunction} />
                 <br />
                 <label htmlFor='title'>이름</label>
                 <input name='title' id='title' value={Title} onChange={handleInputChange} />

@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone';
 import Axios from 'axios';
 import './FileUpload.css';
 
-const FileUpload = ()=>{
+const FileUpload = (props)=>{
     const [Images,setImages] = useState([]);
     const dropHandler=(file)=>{
 
@@ -18,17 +18,20 @@ const FileUpload = ()=>{
                 if (response.data.success) {
                     console.log(response.data.filePath)
                     setImages([...Images,response.data.filePath]);
+                    props.setImageFunction([...Images,response.data.filePath]);
                 } else {
                     alert('이미지 업로드에 실패했습니다.')
                 }
             })
     }
     const deleteImage = (image)=>{
+        console.log('Seouls')
         const currentIndex = Images.indexOf(image);
         console.log(currentIndex);
         let newImages = [...Images]
         newImages.splice(currentIndex,1);
         setImages([...newImages]);
+        props.setImageFunction([...newImages]);
     }
     return (
         <div className='dropzone_container'>

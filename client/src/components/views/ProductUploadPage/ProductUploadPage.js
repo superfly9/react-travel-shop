@@ -34,6 +34,26 @@ const ProductUploadPage = (props)=>{
     }
     const handleSubmit=(e)=>{
         e.preventDefault();
+        if (!Title||!Description||!Price||!Continent||!Images) {
+            alert('모든 값을 넣어야 합니다.');
+        }
+        const submitData = {
+            writer : props.user.userData._id,
+            title: Title,
+            description:Description,
+            price: Price,
+            continents :Continent,
+            images : Images
+        }
+        Axios.post('/api/product/save',submitData)
+            .then(response=>{
+                if (response.data.success) {
+                    alert('상품 업로드에 성공했습니다.')
+                    props.history.push('/');
+                } else {
+                    alert('상품 저장에 실패했습니다.')
+                }
+            })
     }
     const continentChangeHandler =(e)=>{
         setContinent(e.currentTarget.value);

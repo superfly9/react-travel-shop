@@ -7,9 +7,11 @@ const ProductUploadPage = (props)=>{
     const contientInfo = [
         {key:1,value:'Asia'},
         {key:2,value:'Europe'},
-        {key:3,value:'America'},
-        {key:4,value:'Africa'},
-        {key:5,value:'Oceania'}
+        {key:3,value:'Africa'},
+        {key:4,value:'Australia'},
+        {key:5,value:'North America'},
+        {key:6,value:'South America'},
+        {key:7,value:'Antarctica'}
     ]
     const [Title,setTitle]=useState('');
     const [Description,setDescription]=useState('');

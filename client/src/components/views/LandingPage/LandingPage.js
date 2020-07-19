@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
 import './LandingPage.css';
+import {continents} from './Sections/Datas';
+import CheckBoxComponent from './Sections/CheckBox';
+
 
 function LandingPage() {
     const [Products,setProducts]=useState([]);
     const [Skip,SetSkip]=useState(0);
     const [Limit,SetLimit]=useState(8);
     const [ProductInfoLength,SetProductInfoLength]=useState(0);
+    const [Filters,setFilters] = useState({
+        continents : [],
+        price :[]
+    });
     useEffect(()=>{
         let body = {
             skip : Skip,
@@ -40,8 +47,10 @@ function LandingPage() {
         getProducts(body);
         SetSkip(skip);
     }
+    const handleFilters = (filters,category) =>{
+
+    }
     const renderCard = Products.map((item,index)=>{
-        console.log(item)
       return (
         <div key={index} className='card'>
             <img className='product_img' src={`http://localhost:5000/${item.images[0]}`} />
@@ -54,6 +63,7 @@ function LandingPage() {
         // flex
      <div className='landingpage_container'>
         <h2 className='landingpage_title'>Let's travel Anywhere</h2>  
+        <CheckBoxComponent list={continents} handleFilters={filters=>handleFilters(filters,'continents')} />
             {/* css grid */}
         <div className='card_container'>
             {renderCard}

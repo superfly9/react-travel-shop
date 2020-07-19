@@ -23,6 +23,10 @@ const ProductSchmea = mongoose.Schema({
         maxlength : 0,
         default : 0
     },
+    continents : {
+        type: Number,
+        default :1
+    },
     images : {
         type :Array,
         default : []

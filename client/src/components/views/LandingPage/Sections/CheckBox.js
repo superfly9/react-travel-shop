@@ -4,7 +4,6 @@ const { Panel } = Collapse;
 
 
 const CheckBoxComponent = (props)=>{
-    console.log(props);
 
     const [Checked,setChekced] = useState([]);
 
@@ -18,9 +17,10 @@ const CheckBoxComponent = (props)=>{
         } else {
             newChecked.splice(currentIndex,1);
         }
+        console.log(newChecked,props)
         // setChecked(newChecked);
         setChekced([...newChecked]);
-        props.handleFilter(newChecked);
+        props.handleFilters(newChecked);
     }
     const renderCheckBox = ()=>props.list && props.list.map((item,index)=>(
         <Checkbox key={index} checked={Checked.indexOf(item._id) === -1 ? false : true} onChange={()=>handleToggle(item._id)}>

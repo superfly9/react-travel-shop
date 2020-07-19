@@ -23,9 +23,7 @@ productRouter.post('/image',upload,(req,res)=>{
 })
 // 업로드 페이지에서 전달하는 상품의 정보들을 저장
 productRouter.post('/save',async (req,res)=>{
-  console.log('req.body:',req.body)
   const product=await new Product(req.body);
-  console.log('productModel',product)
   product.save((err,productInfo)=>{
     if (err) return res.json({success:false,err});
     res.json({success:true})
@@ -38,12 +36,21 @@ productRouter.post('/products',async (req,res)=>{
   console.log(limit,skip,'for more Loading');
   limit = limit ? parseInt(limit) : 20;
   skip = skip ? parseInt(skip) : 0;
-  await Product.find({})
+  let findArgs = {};
+  for (let key in req.body.filters) {
+    if (req.body.filters[key].length > 0) {
+      console.log('filters:',req.body.filters,req.body.filters[key])
+      findArgs[key] = req.body.filters[key];
+    } 
+  }
+  console.log('findArgs:',findArgs);
+  await Product.find(findArgs)
     .populate('writer')
     .skip(skip)
     .limit(limit)
     .exec((err,productInfo)=>{
       if (err) return res.json({success:false,err})
+      console.log('finded:',productInfo);
       res.json({
         success:true,
         productInfo,

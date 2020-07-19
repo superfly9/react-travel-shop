@@ -24,12 +24,10 @@ function LandingPage() {
     const getProducts =(body)=>{
         Axios.post('/api/product/products',body).then(response=>{
             if (response.data.success) {
-                //이거 불필요하다 생각
                 if (body.loadMore) {
                     setProducts([...Products,...response.data.productInfo]);
                 } else {
-                    //처음으로 데이터를 load해올 때
-                    setProducts([...Products,...response.data.productInfo]);
+                    setProducts([...response.data.productInfo]);
                 }
             } else { 
                 alert('상품정보를 가져오는 데 실패했습니다.')
@@ -47,8 +45,24 @@ function LandingPage() {
         getProducts(body);
         SetSkip(skip);
     }
-    const handleFilters = (filters,category) =>{
 
+    const showFilteredResults = (filters)=>{
+        let body = {
+            skip : 0,
+            limit : Limit,
+            filters
+        }
+        getProducts(body)
+        SetSkip(0)
+    }
+
+    const handleFilters = (filters,category) =>{
+        console.log(filters,'get From checkBox change');
+        const newFilters = {...Filters}
+        newFilters[category] = filters;
+        console.log(newFilters,'at new Filters');
+        //filters = [1,2,3,];
+        showFilteredResults(newFilters);
     }
     const renderCard = Products.map((item,index)=>{
       return (
@@ -60,11 +74,9 @@ function LandingPage() {
       )  
     })
     return (
-        // flex
      <div className='landingpage_container'>
         <h2 className='landingpage_title'>Let's travel Anywhere</h2>  
         <CheckBoxComponent list={continents} handleFilters={filters=>handleFilters(filters,'continents')} />
-            {/* css grid */}
         <div className='card_container'>
             {renderCard}
         </div>

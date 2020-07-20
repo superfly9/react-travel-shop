@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
 import './LandingPage.css';
-import {continents} from './Sections/Datas';
+import {continents,price} from './Sections/Datas';
 import CheckBoxComponent from './Sections/CheckBox';
+import RadioBoxComponent from './Sections/RadioBox';
 
 
 function LandingPage() {
@@ -56,13 +57,26 @@ function LandingPage() {
         SetSkip(0)
     }
 
+    const handlePrice = (value)=>{
+        const data = price;
+        let array =[];
+        for (let key in data) {
+            data[key]._id === parseInt(value) ? array = data[key].array : console.log('pass');
+        }
+        return array;
+    }
+
     const handleFilters = (filters,category) =>{
-        console.log(filters,'get From checkBox change');
         const newFilters = {...Filters}
         newFilters[category] = filters;
-        console.log(newFilters,'at new Filters');
-        //filters = [1,2,3,];
+        //filters = [1,2,3];
+        if (category === 'price') {
+            let priceValues=handlePrice(filters);
+            newFilters[category] = priceValues;
+        }
+        console.log('newFilters:',newFilters)
         showFilteredResults(newFilters);
+        setFilters(newFilters);
     }
     const renderCard = Products.map((item,index)=>{
       return (
@@ -76,7 +90,10 @@ function LandingPage() {
     return (
      <div className='landingpage_container'>
         <h2 className='landingpage_title'>Let's travel Anywhere</h2>  
-        <CheckBoxComponent list={continents} handleFilters={filters=>handleFilters(filters,'continents')} />
+        <div>
+            <CheckBoxComponent list={continents} handleFilters={filters=>handleFilters(filters,'continents')} />
+            <RadioBoxComponent list={price} handleFilters={filters=>handleFilters(filters,'price')} />
+        </div>
         <div className='card_container'>
             {renderCard}
         </div>

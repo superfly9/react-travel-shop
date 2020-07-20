@@ -32,15 +32,22 @@ productRouter.post('/save',async (req,res)=>{
 // DB에 저장된 상품 정보들을 불러옴
 productRouter.post('/products',async (req,res)=>{
   
-  let {limit,skip} = req.body;
-  console.log(limit,skip,'for more Loading');
+  let {limit,skip,filters} = req.body;
   limit = limit ? parseInt(limit) : 20;
   skip = skip ? parseInt(skip) : 0;
   let findArgs = {};
-  for (let key in req.body.filters) {
-    if (req.body.filters[key].length > 0) {
-      console.log('filters:',req.body.filters,req.body.filters[key])
-      findArgs[key] = req.body.filters[key];
+  for (let key in filters) {
+    if (filters[key].length > 0) {
+      console.log('filters:',filters,filters[key])
+      //filters {continents : [4], price:[240,279]}
+      if (key === 'price') {
+        findArgs[key] = {
+          $gte : filters[key][0],
+          $lte :filters[key][1]
+        }
+      } else {
+        findArgs[key] = filters[key];
+      }
     } 
   }
   console.log('findArgs:',findArgs);

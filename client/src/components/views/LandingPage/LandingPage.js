@@ -103,11 +103,13 @@ function LandingPage() {
     return (
      <div className='landingpage_container'>
         <h2 className='landingpage_title'>Let's travel Anywhere</h2>  
-        <div>
+        <div className='filter_components'>
             <CheckBoxComponent list={continents} handleFilters={filters=>handleFilters(filters,'continents')} />
             <RadioBoxComponent list={price} handleFilters={filters=>handleFilters(filters,'price')} />
         </div>
-        <SearchComponent searchUpdate={searchUpadate} />
+        <div className='search_container'>
+            <SearchComponent searchUpdate={searchUpadate} />
+        </div>
         <div className='card_container'>
             {renderCard}
         </div>

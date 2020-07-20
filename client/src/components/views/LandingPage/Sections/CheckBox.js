@@ -29,8 +29,8 @@ const CheckBoxComponent = (props)=>{
     ))
     return (
         <div>
-            <Collapse defaultActiveKey={'1'}>
-                <Panel header='Seoul_Lite' key='1'>
+            <Collapse>
+                <Panel header='Seoul_Lite'>
                     {renderCheckBox()}
                 </Panel>
             </Collapse >

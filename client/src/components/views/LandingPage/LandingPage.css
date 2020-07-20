@@ -24,7 +24,16 @@
     width: 80%;
     height: 70%;
 }
+.filter_components {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
 .btn_container {
     display: flex;
     justify-content: center;
+}
+.search_container {
+    display: flex;
+    margin: 1rem 0;
+    justify-content: flex-end;
 }

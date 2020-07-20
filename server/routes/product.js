@@ -32,7 +32,7 @@ productRouter.post('/save',async (req,res)=>{
 // DB에 저장된 상품 정보들을 불러옴
 productRouter.post('/products',async (req,res)=>{
   
-  let {limit,skip,filters} = req.body;
+  let {limit,skip,filters,searchTerm:term} = req.body;
   limit = limit ? parseInt(limit) : 20;
   skip = skip ? parseInt(skip) : 0;
   let findArgs = {};
@@ -51,7 +51,9 @@ productRouter.post('/products',async (req,res)=>{
     } 
   }
   console.log('findArgs:',findArgs);
-  await Product.find(findArgs)
+  if (term) {
+    await Product.find(findArgs)
+    .find({$text : {$search : term}})
     .populate('writer')
     .skip(skip)
     .limit(limit)
@@ -64,6 +66,22 @@ productRouter.post('/products',async (req,res)=>{
         productInfoLength:productInfo.length
       })
     })
+  } else {
+    await Product.find(findArgs)
+      .populate('writer')
+      .skip(skip)
+      .limit(limit)
+      .exec((err,productInfo)=>{
+        if (err) return res.json({success:false,err})
+        console.log('finded:',productInfo);
+        res.json({
+          success:true,
+          productInfo,
+          productInfoLength:productInfo.length
+        })
+      })
+  }
+
 })
 
 

@@ -32,7 +32,15 @@ const ProductSchmea = mongoose.Schema({
         default : []
     }
 },{timestamps:true})
-
+ProductSchmea.index({
+    title : 'text',
+    description : 'text'
+},{
+    weights : {
+        title :5,
+        description :1
+    }
+});
 
 
 const Product = mongoose.model('Product',ProductSchmea);

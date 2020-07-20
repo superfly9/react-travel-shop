@@ -4,17 +4,19 @@ import './LandingPage.css';
 import {continents,price} from './Sections/Datas';
 import CheckBoxComponent from './Sections/CheckBox';
 import RadioBoxComponent from './Sections/RadioBox';
+import SearchComponent from './Sections/Search';
 
 
 function LandingPage() {
     const [Products,setProducts]=useState([]);
-    const [Skip,SetSkip]=useState(0);
-    const [Limit,SetLimit]=useState(8);
-    const [ProductInfoLength,SetProductInfoLength]=useState(0);
+    const [Skip,setSkip]=useState(0);
+    const [Limit,setLimit]=useState(8);
+    const [ProductInfoLength,setProductInfoLength]=useState(0);
     const [Filters,setFilters] = useState({
         continents : [],
         price :[]
     });
+    const [SearchTerm,setSearchTerm] = useState('');
     useEffect(()=>{
         let body = {
             skip : Skip,
@@ -33,7 +35,7 @@ function LandingPage() {
             } else { 
                 alert('상품정보를 가져오는 데 실패했습니다.')
             }
-            SetProductInfoLength(response.data.productInfoLength);
+            setProductInfoLength(response.data.productInfoLength);
         })
     }
     const loadMoreHandler = ()=>{
@@ -44,7 +46,7 @@ function LandingPage() {
             loadMore : true
         }
         getProducts(body);
-        SetSkip(skip);
+        setSkip(skip);
     }
 
     const showFilteredResults = (filters)=>{
@@ -54,7 +56,7 @@ function LandingPage() {
             filters
         }
         getProducts(body)
-        SetSkip(0)
+        setSkip(0)
     }
 
     const handlePrice = (value)=>{
@@ -87,6 +89,17 @@ function LandingPage() {
         </div>
       )  
     })
+    const searchUpadate = (searchTerm)=>{
+        const body ={
+            skip : 0,
+            limit :Limit,
+            filters:Filters,
+            searchTerm
+        }
+        setSkip(0);
+        setSearchTerm(searchTerm);
+        getProducts(body);
+    }
     return (
      <div className='landingpage_container'>
         <h2 className='landingpage_title'>Let's travel Anywhere</h2>  
@@ -94,6 +107,7 @@ function LandingPage() {
             <CheckBoxComponent list={continents} handleFilters={filters=>handleFilters(filters,'continents')} />
             <RadioBoxComponent list={price} handleFilters={filters=>handleFilters(filters,'price')} />
         </div>
+        <SearchComponent searchUpdate={searchUpadate} />
         <div className='card_container'>
             {renderCard}
         </div>

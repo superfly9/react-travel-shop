@@ -9,20 +9,17 @@
     margin: 1.8rem 0;
 }
 .card_container {
- display: grid;
- grid-template-columns: repeat(4,1fr);
- border: 2px solid blueviolet;
+    display: flex;
+    border: 2px solid darkgoldenrod;
+    flex-wrap: wrap ;
+    justify-content: space-between;
 }
-
-.card {
-    border: 1px solid sandybrown;
+.card_item {
     display: flex;
     flex-direction: column;
-    height: 100%;
-}
-.card .product_img {
-    width: 80%;
-    height: 70%;
+    margin: .5rem 0;
+    border: 3px sold darkgreen;
+    width: 24%;
 }
 .filter_components {
     display: grid;
@@ -36,4 +33,14 @@
     display: flex;
     margin: 1rem 0;
     justify-content: flex-end;
+}
+img {
+    width: 100%;
+    height: 100%;
+}
+.ant-carousel {
+    height: 100%;
+}
+.ant-carousel img {
+    height: 100%;
 }

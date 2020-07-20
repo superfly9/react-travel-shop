@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import Axios from 'axios';
 import './LandingPage.css';
 import {continents,price} from './Sections/Datas';
 import CheckBoxComponent from './Sections/CheckBox';
 import RadioBoxComponent from './Sections/RadioBox';
 import SearchComponent from './Sections/Search';
+import CarouselComponent from '../utills/Carousel';
+import { Carousel } from 'antd';
 
 
 function LandingPage() {
@@ -82,8 +84,8 @@ function LandingPage() {
     }
     const renderCard = Products.map((item,index)=>{
       return (
-        <div key={index} className='card'>
-            <img className='product_img' src={`http://localhost:5000/${item.images[0]}`} />
+        <div className='card_item'  key={index}>
+            <CarouselComponent key={index} images={item.images} />
             <span className='product_description'>{item.description}</span>
             <span className='product_price'>{item.price}</span>
         </div>

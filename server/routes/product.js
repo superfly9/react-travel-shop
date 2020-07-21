@@ -84,6 +84,16 @@ productRouter.post('/products',async (req,res)=>{
 
 })
 
+productRouter.get('/products_by_id',async (req,res)=>{
+  const {id:productId,type} = req.query;
+  console.log('id:',productId,'type:',type);
+  Product.find({_id:productId})
+    .populate('writer')
+    .exec((err,productInfo)=>{
+      if (err) return res.json({success:false})
+      res.json({success:true,productInfo})
+    })
+})
 
 
 module.exports = productRouter;

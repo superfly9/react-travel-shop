@@ -85,7 +85,7 @@ function LandingPage() {
     const renderCard = Products.map((item,index)=>{
       return (
         <div className='card_item'  key={index}>
-            <CarouselComponent key={index} images={item.images} />
+            <a href={`/product/${item._id}`}><CarouselComponent key={index} images={item.images} /></a>
             <span className='product_description'>{item.description}</span>
             <span className='product_price'>{item.price}</span>
         </div>

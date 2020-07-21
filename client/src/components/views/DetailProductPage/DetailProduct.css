@@ -1,0 +1,14 @@
+.detail_product_container {
+    display: flex;
+    flex-direction: column;
+}
+.detail_product_title {
+    margin: 0 auto;
+    font-size: 1.2rem;
+}
+.product_component_container {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+}
+/* .item_con */

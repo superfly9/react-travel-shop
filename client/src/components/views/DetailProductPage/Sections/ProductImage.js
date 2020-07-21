@@ -17,7 +17,7 @@ const ProductImage=(props)=>{
         }
     },[props.detail])
     return (
-        <div>
+        <div className='image_container'>
             <ImageGallery items={Images}/>
         </div>
     )

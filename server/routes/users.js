@@ -48,8 +48,7 @@ router.post("/login", (req, res) => {
             user.generateToken((err, user) => {
                 if (err) return res.status(400).send(err);
                 res.cookie("w_authExp", user.tokenExp);
-                res
-                    .cookie("w_auth", user.token)
+                res.cookie("w_auth", user.token)
                     .status(200)
                     .json({
                         loginSuccess: true, userId: user._id
@@ -67,5 +66,15 @@ router.get("/logout", auth, (req, res) => {
         });
     });
 });
+
+router.post('/addToCart',auth,(req,res)=>{
+    User.find({_id:req.user._id})
+        .exec((err,userInfo)=>{
+            if (err) console.log(err)
+            console.log('userInfo:',userInfo)
+        })
+
+})
+
 
 module.exports = router;

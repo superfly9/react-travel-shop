@@ -28,7 +28,15 @@ const ProductSchmea = mongoose.Schema({
         default :1
     },
     images : {
-        type :Array,
+        type : Array,
+        default : []
+    },
+    cart : {
+        type : Array,
+        default :[]
+    },
+    history : {
+        type : Array,
         default : []
     }
 },{timestamps:true})

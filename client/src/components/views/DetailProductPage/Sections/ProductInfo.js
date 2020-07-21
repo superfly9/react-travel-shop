@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import {useDispatch} from 'react-redux';
+import { addToCart } from '../../../../_actions/user_actions';
 
 const ProductInfo=(props)=>{
-    const [ProductInfo,setProductInfo] = useState({});
-    useEffect(()=>{
-        setProductInfo(props.detail)        
-        console.log('at ProductInfo:',props.detail)
-    },[props.detail])
+    const dispatch = useDispatch();
+    const clickAddToCart = (e)=>{
+        dispatch(addToCart(props.detail._id))
+            .then(response=>{
+                console.log('data from redux',response.data);
+            })
+    }
     return (
         <div className='item_container'>
             <h2 className='item_title'>ProductInfo</h2>
@@ -17,6 +21,7 @@ const ProductInfo=(props)=>{
             <p className='item_description'>
                 {props.detail.description}
             </p>
+            <button className='add_cart_btn' onClick={clickAddToCart}>Add to Cart</button>
         </div>
     )
 }

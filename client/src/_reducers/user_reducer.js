@@ -8,6 +8,7 @@ import {
  
 
 export default function(state={},action){
+    console.log('state:',state,action);
     switch(action.type){
         case REGISTER_USER:
             return {...state, register: action.payload }
@@ -18,7 +19,13 @@ export default function(state={},action){
         case LOGOUT_USER:
             return {...state }
         case ADD_TO_CART:
-            return {...state}
+            return {
+                ...state,
+                userData : {
+                    ...state.userData,
+                    cart : action.payload
+                }
+            }
         default:
             return state;
     }

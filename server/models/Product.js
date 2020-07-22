@@ -30,14 +30,6 @@ const ProductSchmea = mongoose.Schema({
     images : {
         type : Array,
         default : []
-    },
-    cart : {
-        type : Array,
-        default :[]
-    },
-    history : {
-        type : Array,
-        default : []
     }
 },{timestamps:true})
 ProductSchmea.index({

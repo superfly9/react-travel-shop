@@ -38,7 +38,7 @@ productRouter.post('/products',async (req,res)=>{
   let findArgs = {};
   for (let key in filters) {
     if (filters[key].length > 0) {
-      console.log('filters:',filters,filters[key])
+      // console.log('filters:',filters,filters[key])
       //filters {continents : [4], price:[240,279]}
       if (key === 'price') {
         findArgs[key] = {
@@ -73,7 +73,7 @@ productRouter.post('/products',async (req,res)=>{
       .limit(limit)
       .exec((err,productInfo)=>{
         if (err) return res.json({success:false,err})
-        console.log('finded:',productInfo);
+        // console.log('finded:',productInfo);
         res.json({
           success:true,
           productInfo,
@@ -86,7 +86,6 @@ productRouter.post('/products',async (req,res)=>{
 
 productRouter.get('/products_by_id',async (req,res)=>{
   const {id:productId,type} = req.query;
-  console.log('id:',productId,'type:',type);
   Product.find({_id:productId})
     .populate('writer')
     .exec((err,productInfo)=>{

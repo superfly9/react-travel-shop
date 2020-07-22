@@ -18,6 +18,8 @@ router.get("/auth", auth, (req, res) => {
         lastname: req.user.lastname,
         role: req.user.role,
         image: req.user.image,
+        cart : req.user.cart,
+        history : req.user.history
     });
 });
 
@@ -68,10 +70,52 @@ router.get("/logout", auth, (req, res) => {
 });
 
 router.post('/addToCart',auth,(req,res)=>{
-    User.find({_id:req.user._id})
-        .exec((err,userInfo)=>{
-            if (err) console.log(err)
-            console.log('userInfo:',userInfo)
+    const {body : {id :productId}}=req;
+    //먼저  User Collection에 해당 유저의 정보를 가져오기 
+    User.findOne({ _id: req.user._id },
+        (err, userInfo) => {
+            let duplicate = false;
+            userInfo.cart.forEach((item) => {
+                console.log('item:',item,'productId:',productId)
+                if (item.id===productId) {
+                    duplicate = true;
+                }
+            })
+
+            //상품이 이미 있을때
+            if (duplicate) {
+                User.findOneAndUpdate(
+                    { _id: req.user._id, "cart.id": productId },
+                    { $inc: { "cart.$.quantity": 1 } },
+                    { new: true },
+                    (err, userInfo) => {
+                        console.log('userInfo:',userInfo)
+                        if (err) return res.status(200).json({ success: false, err })
+                        res.status(200).send(userInfo.cart)
+                    }
+                )
+            }
+            //상품이 이미 있지 않을때 
+            else {
+                User.findOneAndUpdate(
+                    { _id: req.user._id },
+                    {
+                        $push: {
+                            cart: {
+                                id: productId,
+                                quantity: 1,
+                                date: Date.now()
+                            }
+                        }
+                    },
+                    { new: true },
+                    (err, userInfo) => {
+                        console.log('Info from cart:',userInfo)
+                        if (err) return res.status(400).json({ success: false, err })
+                        res.status(200).send(userInfo.cart)
+                    }
+                )
+            }
         })
 
 })

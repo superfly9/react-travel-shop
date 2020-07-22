@@ -13,7 +13,6 @@ const DetailProductPage = (props) =>{
             .then(response=>{
                 if (response.data.success) {
                     setProduct(response.data.productInfo[0]);
-                    console.log('data',response.data.productInfo)
                 } else {
                     alert('상세 정보 가져오기에 실패했습니다.');
                 }

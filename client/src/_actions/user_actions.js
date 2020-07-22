@@ -11,7 +11,6 @@ import { USER_SERVER } from '../components/Config.js';
 export function registerUser(dataToSubmit){
     const request = Axios.post(`${USER_SERVER}/register`,dataToSubmit)
         .then(response => response.data);
-    
     return {
         type: REGISTER_USER,
         payload: request
@@ -21,7 +20,6 @@ export function registerUser(dataToSubmit){
 export function loginUser(dataToSubmit){
     const request = Axios.post(`${USER_SERVER}/login`,dataToSubmit)
                 .then(response => response.data);
-
     return {
         type: LOGIN_USER,
         payload: request
@@ -48,15 +46,15 @@ export function logoutUser(){
     }
 }
 
-export function addToCart (id) {
+export async function addToCart (id) {
     const body = {id};
-    const request = Axios.post(`${USER_SERVER}/addToCart`,body)
+    const request =await Axios.post(`${USER_SERVER}/addToCart`,body)
         .then(response=>{
             console.log('addToCart_Action',response.data)
             return response.data
         })
     return {
-        type :ADD_TO_CART ,
+        type :ADD_TO_CART,
         payload :request
     }
 }

@@ -7,8 +7,8 @@ const ProductInfo=(props)=>{
     const clickAddToCart = (e)=>{
         dispatch(addToCart(props.detail._id))
             .then(response=>{
-                console.log('data from redux',response.data);
-            })
+                console.log('data from redux',response.payload);
+            })            
     }
     return (
         <div className='item_container'>

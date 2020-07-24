@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+    border: 1px solid gray;
+}
+tr,td,th {
+    padding: .5rem;
+    border: 1px solid black;
+}
+tr:nth-child(even) {
+    background-color:rgba(99, 96, 83,0.7);
+}
+img {
+    width: 100px;
+    max-height: 100%;
+}

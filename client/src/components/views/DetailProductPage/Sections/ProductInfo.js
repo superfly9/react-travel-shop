@@ -5,6 +5,7 @@ import { addToCart } from '../../../../_actions/user_actions';
 const ProductInfo=(props)=>{
     const dispatch = useDispatch();
     const clickAddToCart = (e)=>{
+        console.log('at ProductInfo:',props.detail)
         dispatch(addToCart(props.detail._id))
             .then(response=>{
                 console.log('data from redux',response.payload);

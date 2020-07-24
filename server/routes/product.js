@@ -85,11 +85,17 @@ productRouter.post('/products',async (req,res)=>{
 })
 
 productRouter.get('/products_by_id',async (req,res)=>{
-  const {id:productId,type} = req.query;
-  Product.find({_id:productId})
+  let {id:productId,type} = req.query;
+  if (type === 'array') {
+    let ids = productId.split(',');
+    productId = ids.map((item)=>item);
+  }
+  console.log('productId:',productId)
+  Product.find({_id:{$in : productId}})
     .populate('writer')
     .exec((err,productInfo)=>{
       if (err) return res.json({success:false})
+      console.log('product_by_Id:',productInfo);
       res.json({success:true,productInfo})
     })
 })

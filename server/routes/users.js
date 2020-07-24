@@ -71,6 +71,7 @@ router.get("/logout", auth, (req, res) => {
 
 router.post('/addToCart',auth,(req,res)=>{
     const {body : {id :productId}}=req;
+    console.log('productId:',productId);
     //먼저  User Collection에 해당 유저의 정보를 가져오기 
     User.findOne({ _id: req.user._id },
         (err, userInfo) => {

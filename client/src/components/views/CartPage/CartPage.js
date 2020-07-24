@@ -21,7 +21,7 @@ const CartPage= (props)=>{
     return (
         <div style={{width:'85%',margin:'3rem auto'}}>
             <h1>My cart</h1>
-            <UserCard productInfo={props.user.cartDetail&&props.user.cartDetail.productInfo} />
+            <UserCard productInfo={props.user.cartDetail} />
         </div>
     )
 }

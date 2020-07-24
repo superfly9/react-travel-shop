@@ -96,7 +96,7 @@ productRouter.get('/products_by_id',async (req,res)=>{
     .exec((err,productInfo)=>{
       if (err) return res.json({success:false})
       console.log('product_by_Id:',productInfo);
-      res.json({success:true,productInfo})
+      res.send(productInfo)
     })
 })
 

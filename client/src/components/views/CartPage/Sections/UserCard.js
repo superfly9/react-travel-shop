@@ -8,15 +8,15 @@ const UserCard = (props)=>{
             return `http://localhost:5000/${images[0]}`;
         }
     }
-    const renderItems =productInfo && productInfo.map((item,index)=>(
+    const renderItems =productInfo && productInfo.map((productItem,index)=>(
         <tr key={index}>
             <td>
-                <img src={renderImages(item.images)} alt='product'/>
+                <img src={renderImages(productItem.images)} alt='product'/>
             </td>
-            <td>{item.quantity} EA</td>
-            <td>$ {item.price}</td>
+            <td>{productItem.quantity} EA</td>
+            <td>$ {productItem.price}</td>
             <td>
-                <button>Remove</button>
+                <button onClick={()=>props.removeItem(productItem._id)}>Remove</button>
             </td>
         </tr>
     ))

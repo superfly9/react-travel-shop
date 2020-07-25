@@ -5,7 +5,8 @@ import {
     AUTH_USER,
     LOGOUT_USER,
     ADD_TO_CART,
-    GET_CART_ITEMS
+    GET_CART_ITEMS,
+    REMOVE_CART_ITEM
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -57,13 +58,11 @@ export async function addToCart (id) {
     }
 }
 export async function getCartItems (cartItems,userCart) {
-    console.log('cartItems:',cartItems,'userCart',userCart);
     //userCart : id / date / quantity 
     const request = await Axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`)
         .then(response=>{
             //response.data => productInfo
             const {data} = response;
-            console.log('data:',data)
             userCart.forEach((cartItem,index)=>{
                 data.forEach((productDetail,index)=>{
                     if (productDetail._id === cartItem.id) {
@@ -75,6 +74,28 @@ export async function getCartItems (cartItems,userCart) {
         })
     return {
         type : GET_CART_ITEMS,
+        payload : request
+    }
+}
+
+
+export async function removeCartItem (productId) {
+
+    const request =await Axios.get(`/api/users/removeFromCart?id=${productId}`)
+        .then(response=>{
+            const {cart , productInfo} = response.data;
+            cart.forEach(cartItem=>{
+                productInfo.forEach(productItem=>{
+                    if (productItem._id === cartItem.id) {
+                        productItem.quantity = cartItem.quantity;
+                    }
+                })
+            })
+            return response.data;
+        })
+        console.log('RemoveCartAction:',request)
+    return {
+        type : REMOVE_CART_ITEM,
         payload : request
     }
 }

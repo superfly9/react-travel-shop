@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './UserCard.css';
-
 const UserCard = (props)=>{
-const { productInfo } = props;
-console.log('productInfo:',productInfo);
+    const { productInfo } = props;
 
     const renderImages = (images)=>{
         if (images.length >0) {

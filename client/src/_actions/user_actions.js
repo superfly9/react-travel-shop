@@ -61,7 +61,6 @@ export async function getCartItems (cartItems,userCart) {
     //userCart : id / date / quantity 
     const request = await Axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`)
         .then(response=>{
-            //response.data => productInfo
             const {data} = response;
             userCart.forEach((cartItem,index)=>{
                 data.forEach((productDetail,index)=>{
@@ -93,7 +92,6 @@ export async function removeCartItem (productId) {
             })
             return response.data;
         })
-        console.log('RemoveCartAction:',request)
     return {
         type : REMOVE_CART_ITEM,
         payload : request

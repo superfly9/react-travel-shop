@@ -8,7 +8,8 @@ import { useSelector } from "react-redux";
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
-
+  const {cartDetail} = user;
+  
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then(response => {
       if (response.status === 200) {
@@ -39,7 +40,7 @@ function RightMenu(props) {
         </Menu.Item>
 
         <Menu.Item key="cart" style={{paddingBottom:'3px'}}>
-              <Badge count={5} style={{marginRight:'22px'}}>
+              <Badge count={cartDetail? cartDetail.length : '0'} style={{marginRight:'22px'}}>
                 <a href='/user/cart' className='head-example'>
                   <Icon type='shopping-cart' style={{fontSize:'30px'}} />
                 </a>

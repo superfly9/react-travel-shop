@@ -16,7 +16,6 @@ const FileUpload = (props)=>{
         Axios.post('/api/product/image',formData,config)
             .then(response=>{
                 if (response.data.success) {
-                    console.log(response.data.filePath)
                     setImages([...Images,response.data.filePath]);
                     props.setImageFunction([...Images,response.data.filePath]);
                 } else {
@@ -25,9 +24,7 @@ const FileUpload = (props)=>{
             })
     }
     const deleteImage = (image)=>{
-        console.log('Seouls')
         const currentIndex = Images.indexOf(image);
-        console.log(currentIndex);
         let newImages = [...Images]
         newImages.splice(currentIndex,1);
         setImages([...newImages]);

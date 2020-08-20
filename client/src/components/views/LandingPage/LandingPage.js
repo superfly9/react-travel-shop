@@ -73,7 +73,6 @@ function LandingPage() {
     const handleFilters = (filters,category) =>{
         const newFilters = {...Filters}
         newFilters[category] = filters;
-        //filters = [1,2,3];
         if (category === 'price') {
             let priceValues=handlePrice(filters);
             newFilters[category] = priceValues;

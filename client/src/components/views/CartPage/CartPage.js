@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import {useDispatch} from 'react-redux';
 import { getCartItems, removeCartItem } from '../../../_actions/user_actions';
 import UserCard from './Sections/UserCard';
+import {Empty} from 'antd';
 
-//props.리듀서 이름을 가지고 redux state에 접근 가능
 const CartPage= (props)=>{
     console.log('after Remove:',props.user)
     const dispatch = useDispatch();
     const [TotalPrice,setTotalPrice] = useState(0);
+    const [showTotal,setShowTotal] = useState(false);
     const {user : {userData}} = props;
     useEffect(()=>{
         let cartItems = [];
@@ -28,11 +29,16 @@ const CartPage= (props)=>{
             priceSum += cartItem.price * cartItem.quantity
         })
         setTotalPrice(priceSum);
+        setShowTotal(true);
     }
     const removeItem = (productId)=>{
         dispatch(removeCartItem(productId))
             .then(response=>{
+                console.log(response,'at Remove Item')
+                if (response.payload.productInfo.length  === 0) {
+                    setShowTotal(false);
 
+                }
             })
 
     }
@@ -40,9 +46,15 @@ const CartPage= (props)=>{
         <div style={{width:'85%',margin:'3rem auto'}}>
             <h1>My cart</h1>
             <UserCard productInfo={props.user.cartDetail} removeItem={removeItem} />
-            <div className='total_price_container'>
-                Total Amount : ${TotalPrice}
-            </div>
+            {showTotal ?
+                <div className='total_price_container'>
+                    <h2>Total Amount : ${TotalPrice}</h2>
+                </div> :
+                <Fragment>
+                    <br />
+                    <Empty description={false}></Empty>
+                </Fragment>
+            }   
         </div>
     )
 }

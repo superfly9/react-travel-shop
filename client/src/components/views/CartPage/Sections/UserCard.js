@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './UserCard.css';
 const UserCard = (props)=>{
     const { productInfo } = props;
-
     const renderImages = (images)=>{
         if (images.length >0) {
             return `http://localhost:5000/${images[0]}`;
         }
     }
+    //cart.id href에
     const renderItems =productInfo && productInfo.map((productItem,index)=>(
         <tr key={index}>
             <td>
-                <img src={renderImages(productItem.images)} alt='product'/>
+                <a href={`/product/${productItem._id}`}> 
+                    <img className='cart_img' src={renderImages(productItem.images)} alt='product'/>
+                </a>
             </td>
             <td>{productItem.quantity} EA</td>
             <td>$ {productItem.price}</td>
             <td>
-                <button onClick={()=>props.removeItem(productItem._id)}>Remove</button>
+                <button className='cart_remove_btn' onClick={()=>props.removeItem(productItem._id)}>Remove</button>
             </td>
         </tr>
     ))

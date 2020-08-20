@@ -5,16 +5,24 @@ table {
 tr,td,th {
     padding: .5rem;
     border: 1px solid black;
+    font-size: 1rem;
+    text-align: center;
 }
 tr:nth-child(even) {
     background-color:rgba(99, 96, 83,0.7);
 }
-img {
-    width: 100px;
-    max-height: 100%;
+.cart_img {
+    width: 10vw;
+    height: 5vw;
 }
 .total_price_container {
     padding: 1rem 0;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     font-weight: 500;
+}
+.cart_remove_btn {
+    padding: .5rem;
+    width: 80%;
+    border-radius: 10px;
+    border:1px solid rgba(0,0,0,.4);
 }

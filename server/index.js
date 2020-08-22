@@ -2,13 +2,19 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require('cors')
-
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-
 const config = require("./config/key");
-
 const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+const AWS = require('aws-sdk');
+
+dotenv.config();
+AWS.config.update({
+  accessKeyId:process.env.ACCESS_KEY,
+  secretAccessKey:process.env.SECRET_ACCESS_KEY,
+  region:'ap-northeast-2'
+})
 const connect = mongoose.connect(config.mongoURI,
   {
     useNewUrlParser: true, useUnifiedTopology: true,
@@ -18,8 +24,6 @@ const connect = mongoose.connect(config.mongoURI,
   .catch(err => console.log(err));
 
 app.use(cors())
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());

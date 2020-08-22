@@ -1,23 +1,31 @@
 const express = require('express');
 const productRouter = express.Router();
 const multer = require('multer');
+const multerS3=require('multer-s3');
+const AWS = require('aws-sdk');
 const {Product} =  require('../models/Product');
+const path = require('path');
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/')
-    },
-    filename: function (req, file, cb) {
-        console.log('file:',file)
-      cb(null, `${Date.now()}_${file.originalname}`)
+
+const s3 = new AWS.S3();
+
+const upload =multer({
+  storage : multerS3({
+    s3,
+    bucket:'seoul-shopping',
+    acl:'public-read',
+    key : function (req,file,cb) {
+        let extension = path.extname(file.originalname);
+        cb(null,`${Date.now().toString()}${extension}`)
     }
   })
-const upload = multer({ storage }).single('files')
+});
 
-productRouter.post('/image',upload,(req,res)=>{
-    const { filename,path:filePath} = req.file;
-    if (filename && filePath) {
-        return res.json({success:true,filename,filePath});
+productRouter.post('/image',upload.single('files'),(req,res)=>{
+    console.log(req.file)
+    const { file:{location:filePath}} = req;
+    if (filePath) {
+        return res.json({success:true,filePath});
     } 
     res.json({success:false});
 })

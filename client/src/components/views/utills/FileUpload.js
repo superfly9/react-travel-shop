@@ -37,14 +37,13 @@ const FileUpload = (props)=>{
                 {({getRootProps, getInputProps}) => (
                     <div className='dropzone_content' {...getRootProps()}>
                         <input {...getInputProps()} />
-                        {/* 여기에 +아이콘 넣어주기 */}
                         <PlusOutlined  style={{fontSize:'3rem'}}/>
                     </div>
                 )}
             </Dropzone>
             <div className='thumbnail_container'>
                 {Images.map((item,index)=>(
-                    <img onClick={()=>{deleteImage(item)}} className='thumbnail' key={index} src={`http://localhost:5000/${item}`}/>
+                    <img onClick={()=>{deleteImage(item)}} className='thumbnail' key={index} src={item}/>
                 ))}
                 </div>
             

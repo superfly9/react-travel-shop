@@ -10,19 +10,15 @@
 }
 .card_container {
     display: flex;
-    border: 2px solid darkgoldenrod;
     flex-wrap: wrap ;
 }
 .card_item {
     display: flex;
     flex-direction: column;
-    margin: .5rem;
-    border: 3px sold darkgreen;
-    width: 24%;
+    width: 25%;
+    padding:.3rem;
 }
-.card_item:nth-child(4n) {
-    margin: .5rem 0;
-}
+
 .filter_components {
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -35,12 +31,4 @@
     display: flex;
     margin: 1rem 0;
     justify-content: flex-end;
-}
-
-.slick-slide{
-    height: 40vh;
-}
-
-.slick-slide.slick-active>div>img {
-    height: auto;
 }

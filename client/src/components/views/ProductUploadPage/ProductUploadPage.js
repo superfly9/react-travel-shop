@@ -78,7 +78,7 @@ const ProductUploadPage = (props)=>{
                 <label htmlFor='description'>설명</label>
                 <textarea name='description' id='description' value={Description} onChange={handleInputChange} />
                 <br />
-                <label htmlFor='price'>가격($)</label>
+                <label htmlFor='price'>가격(원)</label>
                 <input name='price' id='price' value={Price} onChange={handleInputChange}></input>
                 <br />
                 <select onChange={continentChangeHandler} value={Continent}>

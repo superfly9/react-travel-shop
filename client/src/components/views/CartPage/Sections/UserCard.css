@@ -13,7 +13,7 @@ tr:nth-child(even) {
 }
 .cart_img {
     width: 10vw;
-    height: 5vw;
+    height: 10vw;
 }
 .total_price_container {
     padding: 1rem 0;

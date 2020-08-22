@@ -8,6 +8,7 @@ const config = require("./config/key");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 const AWS = require('aws-sdk');
+const helmet = require('helmet');
 
 dotenv.config();
 AWS.config.update({
@@ -23,6 +24,7 @@ const connect = mongoose.connect(config.mongoURI,
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
+app.use(helmet());
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

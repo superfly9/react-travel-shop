@@ -25,7 +25,7 @@ const CartPage= (props)=>{
 
     const calcTotalPrice = (cartList)=>{
         let priceSum = 0;
-        cartList.forEach((cartItem,index)=>{
+        cartList.forEach((cartItem)=>{
             priceSum += cartItem.price * cartItem.quantity
         })
         setTotalPrice(priceSum);
@@ -44,11 +44,11 @@ const CartPage= (props)=>{
     }
     return (
         <div style={{width:'85%',margin:'3rem auto'}}>
-            <h1>My cart</h1>
+            <h1>내 장바구니</h1>
             <UserCard productInfo={props.user.cartDetail} removeItem={removeItem} />
             {showTotal ?
                 <div className='total_price_container'>
-                    <h2>Total Amount : ${TotalPrice}</h2>
+                    <h2>총 합계 : {TotalPrice}원</h2>
                 </div> :
                 <Fragment>
                     <br />

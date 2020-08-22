@@ -4,7 +4,7 @@ const UserCard = (props)=>{
     const { productInfo } = props;
     const renderImages = (images)=>{
         if (images.length >0) {
-            return `http://localhost:5000/${images[0]}`;
+            return images[0];
         }
     }
     const renderItems =productInfo && productInfo.map((productItem,index)=>(
@@ -14,10 +14,10 @@ const UserCard = (props)=>{
                     <img className='cart_img' src={renderImages(productItem.images)} alt='product'/>
                 </a>
             </td>
-            <td>{productItem.quantity} EA</td>
-            <td>$ {productItem.price}</td>
+            <td>{productItem.quantity} 개</td>
+            <td>{productItem.price}원</td>
             <td>
-                <button className='cart_remove_btn' onClick={()=>props.removeItem(productItem._id)}>Remove</button>
+                <button className='cart_remove_btn' onClick={()=>props.removeItem(productItem._id)}>카트에서 없애기</button>
             </td>
         </tr>
     ))
@@ -26,10 +26,10 @@ const UserCard = (props)=>{
             <table>
                 <thead>
                     <tr>
-                        <th>Product Image</th>
-                        <th>Product Quantity</th>
-                        <th>Product Price</th>
-                        <th>Remove from Cart</th>
+                        <th>상품 이미지</th>
+                        <th>상품 개수</th>
+                        <th>상품 가격</th>
+                        <th>제거하기</th>
                     </tr>
                 </thead>
 

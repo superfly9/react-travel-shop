@@ -4,6 +4,9 @@
     flex-direction: column;
     align-items: center;
 }
+.upload_container h2 {
+    margin-top: 1rem;
+}
 .upload_container form {
     display: flex;
     flex-direction: column;

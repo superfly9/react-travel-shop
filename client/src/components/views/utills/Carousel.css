@@ -1,0 +1,18 @@
+.carousel_img {
+    height: 40vh;
+}
+.ant-carousel .slick-slide img {
+    height: 40vh;
+}
+.ant-carousel .slick-dots li button {
+    padding:.3rem 0 !important;
+}
+.product_price,
+.product_description {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+}
+.product_description {
+    margin:.5rem 0;
+}

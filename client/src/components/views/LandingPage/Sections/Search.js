@@ -14,7 +14,7 @@ const SearchComponent =(props)=>{
     }
     return (
         <div>
-            <Search placeholder='Input search text' onChange={handleSearchChange} value={SearchTerm} />
+            <Search placeholder='제목으로 검색' onChange={handleSearchChange} value={SearchTerm} />
         </div>
     )
 }

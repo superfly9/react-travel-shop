@@ -3,6 +3,7 @@
     justify-content: space-between;
 }
 .dropzone_content {
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;

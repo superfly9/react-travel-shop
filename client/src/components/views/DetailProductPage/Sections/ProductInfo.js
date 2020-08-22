@@ -15,11 +15,11 @@ const ProductInfo=(props)=>{
     }
     return (
         <div className='item_container'>
-            <h2 className='item_title'>ProductInfo</h2>
+            <h2 className='item_title'>상품 정보</h2>
             <div className='item_info'>
-                <span><strong>Price:</strong>{props.detail.price}</span>
-                <span><strong>Sold:</strong>{props.detail.sold}</span>
-                <span><strong>View:</strong>{props.detail.views}</span>
+                <span><strong>가격: </strong>{props.detail.price}</span>
+                <span><strong>판매량: </strong>{props.detail.sold}</span>
+                <span><strong>조회수: </strong>{props.detail.views}</span>
             </div>
             <p className='item_description'>
                 {props.detail.description}

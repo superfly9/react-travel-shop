@@ -81,11 +81,12 @@ function LandingPage() {
         setFilters(newFilters);
     }
     const renderCard = Products.map((item,index)=>{
+        console.log('item:',item)
       return (
         <div className='card_item'  key={index}>
             <a href={`/product/${item._id}`}><CarouselComponent key={index} images={item.images} /></a>
             <span className='product_description'>{item.description}</span>
-            <span className='product_price'>{item.price}</span>
+            <span className='product_price'>{item.price}원</span>
         </div>
       )  
     })

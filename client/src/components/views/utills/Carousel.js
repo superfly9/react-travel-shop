@@ -1,12 +1,12 @@
 import React from 'react';
 import {Carousel} from 'antd';
+import './Carousel.css';
 
 const CarouselComponent = (props)=>{
-    console.log(props.images)
     return (
-        <Carousel autoplay>
+        <Carousel>
             {props.images.map((image,index)=>(
-                <img key={index} src={`http://localhost:5000/${image}`}/>
+                <img className='carousel_img' key={index} src={image}/>
             ))}
         </Carousel>
     )

@@ -9,8 +9,8 @@ const ProductImage=(props)=>{
             let imageArr = [];
             props.detail.images.forEach((item,index)=>{
                 imageArr.push({
-                    original:`http://localhost:5000/${item}`,
-                    thumbnail:`http://localhost:5000/${item}`
+                    original:item,
+                    thumbnail:item
                 })
             })
             setImages(imageArr);

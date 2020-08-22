@@ -40,7 +40,16 @@ const CartPage= (props)=>{
 
                 }
             })
-
+    }
+    const priceChange =(str)=>{
+        let result =str.split('').reverse()
+          .map((item,index)=>{
+            if (index%3===2&&index!==str.split('').length-1) {
+              item=`,${item}`
+            }
+            return item;
+          }).reverse().join('')
+        return result;
     }
     return (
         <div style={{width:'85%',margin:'3rem auto'}}>
@@ -48,7 +57,7 @@ const CartPage= (props)=>{
             <UserCard productInfo={props.user.cartDetail} removeItem={removeItem} />
             {showTotal ?
                 <div className='total_price_container'>
-                    <h2>총 합계 : {TotalPrice}원</h2>
+                    <h2>총 합계 : {priceChange(String(TotalPrice))}원</h2>
                 </div> :
                 <Fragment>
                     <br />

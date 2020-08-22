@@ -7,6 +7,16 @@ const UserCard = (props)=>{
             return images[0];
         }
     }
+    const priceChange =(str)=>{
+        let result =str.split('').reverse()
+          .map((item,index)=>{
+            if (index%3===2&&index!==str.split('').length-1) {
+              item=`,${item}`
+            }
+            return item;
+          }).reverse().join('')
+        return result;
+    }
     const renderItems =productInfo && productInfo.map((productItem,index)=>(
         <tr key={index}>
             <td>
@@ -15,7 +25,7 @@ const UserCard = (props)=>{
                 </a>
             </td>
             <td>{productItem.quantity} 개</td>
-            <td>{productItem.price}원</td>
+            <td>{priceChange(String(productItem.price))}원</td>
             <td>
                 <button className='cart_remove_btn' onClick={()=>props.removeItem(productItem._id)}>카트에서 없애기</button>
             </td>

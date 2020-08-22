@@ -58,12 +58,11 @@ export async function addToCart (id) {
     }
 }
 export async function getCartItems (cartItems,userCart) {
-    //userCart : id / date / quantity 
     const request = await Axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`)
         .then(response=>{
             const {data} = response;
-            userCart.forEach((cartItem,index)=>{
-                data.forEach((productDetail,index)=>{
+            userCart.forEach(cartItem=>{
+                data.forEach(productDetail=>{
                     if (productDetail._id === cartItem.id) {
                         productDetail.quantity=cartItem.quantity;
                     }

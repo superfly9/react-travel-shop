@@ -6,7 +6,6 @@ import CheckBoxComponent from './Sections/CheckBox';
 import RadioBoxComponent from './Sections/RadioBox';
 import SearchComponent from './Sections/Search';
 import CarouselComponent from '../utills/Carousel';
-import { Carousel } from 'antd';
 
 
 function LandingPage() {
@@ -103,7 +102,7 @@ function LandingPage() {
     }
     return (
      <div className='landingpage_container'>
-        <h2 className='landingpage_title'>Let's travel Anywhere</h2>  
+        <h2 className='landingpage_title'>어디든 떠나볼까요!</h2>  
         <div className='filter_components'>
             <CheckBoxComponent list={continents} handleFilters={filters=>handleFilters(filters,'continents')} />
             <RadioBoxComponent list={price} handleFilters={filters=>handleFilters(filters,'price')} />

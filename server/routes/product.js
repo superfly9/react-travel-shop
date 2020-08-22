@@ -59,7 +59,6 @@ productRouter.post('/products',async (req,res)=>{
     .limit(limit)
     .exec((err,productInfo)=>{
       if (err) return res.json({success:false,err})
-      console.log('finded:',productInfo);
       res.json({
         success:true,
         productInfo,
@@ -73,7 +72,6 @@ productRouter.post('/products',async (req,res)=>{
       .limit(limit)
       .exec((err,productInfo)=>{
         if (err) return res.json({success:false,err})
-        // console.log('finded:',productInfo);
         res.json({
           success:true,
           productInfo,

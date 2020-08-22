@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import Dropzone from 'react-dropzone';
 import Axios from 'axios';
+import { PlusOutlined } from '@ant-design/icons';
 import './FileUpload.css';
 
 const FileUpload = (props)=>{
@@ -37,6 +38,7 @@ const FileUpload = (props)=>{
                     <div className='dropzone_content' {...getRootProps()}>
                         <input {...getInputProps()} />
                         {/* 여기에 +아이콘 넣어주기 */}
+                        <PlusOutlined  style={{fontSize:'3rem'}}/>
                     </div>
                 )}
             </Dropzone>

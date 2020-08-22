@@ -3,7 +3,6 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
 }
 .upload_container form {
     display: flex;

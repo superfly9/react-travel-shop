@@ -24,20 +24,16 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="mail">
-          <a href="/login">Signin</a>
+          <a href="/login">로그인</a>
         </Menu.Item>
         <Menu.Item key="app">
-          <a href="/register">Signup</a>
+          <a href="/register">회원가입</a>
         </Menu.Item>
       </Menu>
     )
   } else {
     return (
       <Menu mode={props.mode}>
-
-        <Menu.Item key="upload">
-          <a href='/product/upload'>Upload</a>
-        </Menu.Item>
 
         <Menu.Item key="cart" style={{paddingBottom:'3px'}}>
               <Badge count={cartDetail? cartDetail.length : '0'} style={{marginRight:'22px'}}>
@@ -47,8 +43,12 @@ function RightMenu(props) {
               </Badge>
         </Menu.Item>
 
+        <Menu.Item key="upload">
+          <a href='/product/upload'>상품 업로드</a>
+        </Menu.Item>
+
         <Menu.Item key="logout">
-          <a onClick={logoutHandler}>Logout</a>
+          <a onClick={logoutHandler}>로그아웃</a>
         </Menu.Item>
 
       </Menu>

@@ -7,7 +7,6 @@ const UserCard = (props)=>{
             return `http://localhost:5000/${images[0]}`;
         }
     }
-    //cart.id href에
     const renderItems =productInfo && productInfo.map((productItem,index)=>(
         <tr key={index}>
             <td>

@@ -17,8 +17,6 @@ const CheckBoxComponent = (props)=>{
         } else {
             newChecked.splice(currentIndex,1);
         }
-        console.log(newChecked,props)
-        // setChecked(newChecked);
         setChekced([...newChecked]);
         props.handleFilters(newChecked);
     }
@@ -30,7 +28,7 @@ const CheckBoxComponent = (props)=>{
     return (
         <div>
             <Collapse>
-                <Panel header='Seoul_Lite'>
+                <Panel header='떠나고 싶은 지역'>
                     {renderCheckBox()}
                 </Panel>
             </Collapse >

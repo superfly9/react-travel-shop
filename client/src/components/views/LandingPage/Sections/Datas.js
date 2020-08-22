@@ -31,32 +31,32 @@ export const continents = [
 export const price = [
     {
         '_id':0,
-        'name':'Any',
+        'name':'상관없음',
         'array':[]
     },
     {
         '_id':1,
-        'name':'$0 to $199',
-        'array':[0,199]
+        'name':'~10만원',
+        'array':[0,99999]
     },
     {
         '_id':2,
-        'name':'$200 to $249',
-        'array':[200,249]
+        'name':'~20만원',
+        'array':[100000,199999]
     },
     {
         '_id':3,
-        'name':'$250 to $279',
-        'array':[250,279]
+        'name':'~30만원',
+        'array':[200000,299999]
     },
     {
         '_id':4,
-        'name':'$280 to $299',
-        'array':[280,299]
+        'name':'~40만원',
+        'array':[300000,399999]
     },
     {
         '_id':5,
-        'name':'More than $300',
-        'array':[300,1500000]
+        'name':'40만원 이상',
+        'array':[400000,15000000]
     }
 ]

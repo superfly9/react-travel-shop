@@ -1,31 +1,31 @@
 export const continents = [
     {
         '_id':1,
-        'name':'Asia'
+        'name':'아시아'
     },
     {
         '_id':2,
-        'name':'Europe'
+        'name':'유럽'
     },
     {
         '_id':3,
-        'name':'Africa'
+        'name':'아프리카'
     },
     {
         '_id':4,
-        'name':'Australia'
+        'name':'호주'
     },
     {
         '_id':5,
-        'name':'North America'
+        'name':'북아메리카'
     },
     {
         '_id':6,
-        'name':'South America'
+        'name':'남아메리카'
     },
     {
         '_id':7,
-        'name':'Antarctica'
+        'name':'북극'
     }
 ]
 export const price = [

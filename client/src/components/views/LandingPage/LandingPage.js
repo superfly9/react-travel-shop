@@ -79,12 +79,22 @@ function LandingPage() {
         showFilteredResults(newFilters);
         setFilters(newFilters);
     }
+    const priceChange =(str)=>{
+        let result =str.split('').reverse()
+          .map((item,index)=>{
+            if (index%3===2&&index!==str.split('').length-1) {
+              item=`,${item}`
+            }
+            return item;
+          }).reverse().join('')
+        return result;
+    }
     const renderCard = Products.map((item,index)=>{
       return (
         <div className='card_item'  key={index}>
             <a href={`/product/${item._id}`}><CarouselComponent key={index} images={item.images} /></a>
             <span className='product_description'>{item.description}</span>
-            <span className='product_price'>{item.price}원</span>
+            <span className='product_price'>{priceChange(String(item.price))}원</span>
         </div>
       )  
     })
@@ -96,7 +106,6 @@ function LandingPage() {
             searchTerm
         }
         setSkip(0);
-        console.log(searchTerm)
         getProducts(body);
     }
     return (

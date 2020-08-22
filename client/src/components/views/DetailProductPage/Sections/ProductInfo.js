@@ -13,11 +13,21 @@ const ProductInfo=(props)=>{
             .then(response=>{
             })            
     }
+    const priceChange =(str)=>{
+        let result =str.split('').reverse()
+          .map((item,index)=>{
+            if (index%3===2&&index!==str.split('').length-1) {
+              item=`,${item}`
+            }
+            return item;
+          }).reverse().join('')
+        return result;
+    }
     return (
         <div className='item_container'>
             <h2 className='item_title'>상품 정보</h2>
             <div className='item_info'>
-                <span><strong>가격: </strong>{props.detail.price}</span>
+                <span><strong>가격: </strong>{priceChange(String(props.detail.price))}원</span>
                 <span><strong>판매량: </strong>{props.detail.sold}</span>
                 <span><strong>조회수: </strong>{props.detail.views}</span>
             </div>
@@ -25,7 +35,7 @@ const ProductInfo=(props)=>{
                 {props.detail.description}
             </p>
             {userId ?
-                <button className='add_cart_btn' onClick={clickAddToCart}>Add to Cart</button>
+                <button className='add_cart_btn' onClick={clickAddToCart}>장바구니에 추가</button>
                 :
                 <p>카트에 추가하려면 로그인을 하세요</p>
             }

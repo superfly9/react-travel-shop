@@ -17,7 +17,7 @@ function LandingPage() {
         continents : [],
         price :[]
     });
-    const [SearchTerm,setSearchTerm] = useState('');
+    
     useEffect(()=>{
         let body = {
             skip : Skip,
@@ -76,12 +76,10 @@ function LandingPage() {
             let priceValues=handlePrice(filters);
             newFilters[category] = priceValues;
         }
-        console.log('newFilters:',newFilters)
         showFilteredResults(newFilters);
         setFilters(newFilters);
     }
     const renderCard = Products.map((item,index)=>{
-        console.log('item:',item)
       return (
         <div className='card_item'  key={index}>
             <a href={`/product/${item._id}`}><CarouselComponent key={index} images={item.images} /></a>
@@ -98,7 +96,7 @@ function LandingPage() {
             searchTerm
         }
         setSkip(0);
-        setSearchTerm(searchTerm);
+        console.log(searchTerm)
         getProducts(body);
     }
     return (

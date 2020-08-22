@@ -58,10 +58,9 @@ productRouter.post('/products',async (req,res)=>{
       }
     } 
   }
-  console.log('findArgs:',findArgs);
   if (term) {
     await Product.find(findArgs)
-    .find({$text : {$search : term}})
+    .find({description :new RegExp(term, 'i')})
     .populate('writer')
     .skip(skip)
     .limit(limit)

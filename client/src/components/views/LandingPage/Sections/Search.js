@@ -3,14 +3,13 @@ import {Input} from 'antd';
 
 const {Search} = Input;
 
-
 const SearchComponent =(props)=>{
+    const { searchUpdate }=props;
     const [SearchTerm,setSearchTerm] = useState('');
-
     const handleSearchChange = (e)=>{
         const value = e.currentTarget.value;
         setSearchTerm(value);
-        props.searchUpdate(value);
+        searchUpdate(value);
     }
     return (
         <div>
@@ -18,6 +17,5 @@ const SearchComponent =(props)=>{
         </div>
     )
 }
-
 
 export default SearchComponent;

@@ -56,7 +56,7 @@ function RegisterPage(props) {
           .min(6, '비밀번호는 최소 6자리여야 합니다')
           .required('비밀번호를 입력하세요'),
         confirmPassword: Yup.string()
-          .oneOf([Yup.ref('password'), null], 'Passwords must match')
+          .oneOf([Yup.ref('password'), null], '비밀번호가 일치해야 합니다')
           .required('비밀번호를 입력하세요')
       })}
       onSubmit={(values, { setSubmitting }) => {

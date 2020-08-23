@@ -11,10 +11,6 @@ import ProductUploadPage from './views/ProductUploadPage/ProductUploadPage';
 import DetailProductPage from './views/DetailProductPage/DetailProductPage';
 import CartPage from './views/CartPage/CartPage';
 
-//null   Anyone Can go inside
-//true   only logged in user can go inside
-//false  logged in user can't go inside
-
 function App() {
   return (
     <Suspense fallback={(<div>Loading...</div>)}>

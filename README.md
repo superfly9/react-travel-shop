@@ -50,7 +50,7 @@
 
 　　　　　![장바구니 추가](https://github.com/superfly9/react-travel-shop/blob/master/img/cart.gif)
     
- - 로그인한 유저가 상품 상세 페이지서 장바구니 버튼 클릭스 추가되게 함
+ - 로그인한 유저가 상품 상세 페이지서 장바구니 버튼 클릭시 추가되게 함
  - 장바구니 페이지에서 상품 삭제 가능 및 상품 가격의 총합이 나타남
 
 <br />
